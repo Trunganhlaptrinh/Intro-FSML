@@ -12,8 +12,13 @@ python -m http.server 8000 --bind 127.0.0.1
 
 Open <http://127.0.0.1:8000/website/>. Keep the server running while reviewing the site.
 
+Git LFS is used for the time-lapse video. Install Git LFS and run `git lfs install` once per machine before cloning/pulling or committing video changes.
+
 ## Project notes
 
+- [Agent instructions](AGENTS.md)
+- [Architecture and runtime flow](docs/architecture.md)
+- [Current TODO list](TODO.md)
 - [Project structure and editing guide](docs/project-structure.md)
 - [Content, tools, and asset map](docs/content-and-assets.md)
 - [Desktop, reverse-scroll, and mobile QA checklist](docs/qa-checklist.md)
