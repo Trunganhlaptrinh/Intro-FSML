@@ -1,43 +1,42 @@
 # Project structure and editing guide
 
-## Run the demo
+## Run the preview
 
-From the repository root:
+From the repository root, start a local static server:
 
 ```powershell
 python -m http.server 8000 --bind 127.0.0.1
 ```
 
-Open <http://127.0.0.1:8000/website/>. A static server is required because the Three.js topic scene uses ES modules.
+Open <http://127.0.0.1:8000/website/>. Serve the files over HTTP because the Three.js scene uses ES modules.
 
-## Main folders
+## Main files and folders
 
 | Path | Purpose | Editing guidance |
 | --- | --- | --- |
-| `website/index.html` | Page sections and order | Change section markup and the six topic iframe list here. |
-| `website/src/app.js` | Member data, bilingual page behavior, GSAP/ScrollTrigger | Preserve exact role text from the member source. Keep scroll animations reversible. |
-| `website/src/style.css` | Shared layout and responsive styles | Desktop is the main presentation target; keep the small-screen rules in sync. |
-| `website/public/scenes/` | The dot-hand intro, continuous Story animation, and Three.js topic scene | These are the page's animation scenes. Keep their body backgrounds transparent where the shared Story background must show through. |
-| `website/public/topic-details/` | One standalone HTML page per topic | Update copy and tool labels in the matching topic file. |
-| `website/src/topic-detail.css` and `topic-detail.js` | Shared topic detail layout and language handling | Keep topic page changes consistent across all six documents. |
-| `website/public/assets/` | Logo, member portraits, tool marks, video, and poster | Use descriptive, lowercase kebab-case filenames and update references when renaming. |
-| `docs/` | Maintenance notes and content map | Keep this guide updated when the page sequence or asset layout changes. |
-| `RE/`, `material/`, root `.docx`/`.png` files | User-provided source and reference materials | Preserve these originals; the website should use copies in `website/public/assets/`. |
+| `website/index.html` | Page sections and order | Edit section markup and the topic iframe list here. |
+| `website/src/app.js` | Member data, language behavior, and GSAP/ScrollTrigger timelines | Preserve supplied role text exactly and keep scroll animations reversible. |
+| `website/src/style.css` | Shared layout and responsive styles | Keep small-screen rules in sync with the desktop presentation. |
+| `website/public/scenes/` | Dot-hand intro, persistent background animation, and Three.js topic scene | Keep backgrounds transparent where the shared scene must show through. |
+| `website/public/topic-details/` | One standalone HTML page per topic | Update the content and tool marks in the matching page. |
+| `website/src/topic-detail.css` and `website/src/topic-detail.js` | Shared topic detail styling and language handling | Keep changes consistent across all six topic pages. |
+| `website/public/assets/` | Logo, portraits, tool marks, video, and poster | Use descriptive kebab-case names and update references when renaming files. |
+| `docs/` | Architecture, content, deployment, and QA guidance | Update the relevant guide when implementation details change. |
 
 ## Scroll sequence
 
 1. The hands intro overlays the continuously animated Story background.
-2. The Story copy stays pinned for its scroll section and fades as the topic ribbon arrives.
-3. The Three.js ribbon presents all six research fields over the same Story background.
-4. Six separate topic HTML pages appear in order. GSAP fades each page out to black and fades the next page in; reversing scroll reverses the transition.
-5. The member groups continue over the same animated background.
-6. The time-lapse closing scene uses its own opaque video background, so the Story scene does not show over the video.
+2. The Story slogan stays pinned during its section, then fades as the topic ribbon arrives.
+3. The Three.js ribbon presents six research fields over the same background.
+4. Six separate topic pages appear in order. GSAP fades each page out before revealing the next; reverse scrolling reverses the transitions.
+5. Member groups continue over the same animated background.
+6. The closing video uses its own opaque background, so the Story scene does not show over the video.
 
 ## Editing checklist
 
 - Update English and Vietnamese copy together using paired `data-en` and `data-vi` attributes.
-- When changing a topic, update its standalone HTML file and the topic names used by `smart-lab-topics.html`.
-- When renaming an image, update every `src` reference and the content map.
-- After editing a scroll animation, inspect both downward and upward scrolling. ScrollTrigger uses scrubbed timelines so the transition should play in reverse as the user scrolls up.
-- Check the desktop presentation and a narrow mobile viewport. Keep text readable, avoid horizontal overflow, and keep tool tiles inside the viewport.
-- Keep section backgrounds transparent where the persistent Story scene should be visible; use black shades for legibility rather than a blue color wash.
+- When changing a topic, update its standalone HTML page and the topic names in `smart-lab-topics.html`.
+- When renaming an image, update every `src` reference and `docs/content-and-assets.md`.
+- After editing a scroll animation, inspect downward and upward scrolling. Scrubbed ScrollTrigger timelines should reverse as the page scrolls up.
+- Check desktop and narrow mobile layouts. Keep text readable, prevent horizontal overflow, and keep tool tiles inside the viewport.
+- Keep section backgrounds transparent where the persistent Story scene should remain visible. Use neutral dark overlays for legibility; avoid introducing a colored wash across the full scene.

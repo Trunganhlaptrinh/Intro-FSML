@@ -18,7 +18,7 @@ Run these commands from the repository root:
 docker-compose up --build -d
 ```
 
-Open <http://localhost:8080/> or <http://localhost:8080/website/>. The root URL redirects to the site. The host port is `8080` so it can run beside the existing local preview on port `8000`.
+Open <http://localhost:8080/> or <http://localhost:8080/website/>. The root URL redirects to the site. The host port is `8080` so it can run beside the local preview on port `8000`.
 
 ## Useful commands
 
@@ -36,13 +36,13 @@ docker-compose up --build -d
 docker-compose down
 ```
 
-The site has no persistent container data, so `down` does not remove user content. Rebuild the image after changing any website asset because the site files are copied into the image at build time.
+The site has no persistent container data. Rebuild the image after changing a website asset because the site files are copied into the image at build time.
 
 ## Configuration files
 
 - `Dockerfile` builds the Nginx image.
 - `compose.yaml` maps host port `8080` to container port `80`.
 - `docker/nginx.conf` serves the site and exposes the container health endpoint at `/health`.
-- `.dockerignore` keeps references and source documents out of the build context while retaining all of `website/`, including the MP4.
+- `.dockerignore` keeps source documents out of the build context while retaining all of `website/`, including the MP4.
 
-The time-lapse MP4 is about 50 MB, so it increases the image size. Nginx serves it as a static MP4 and supports byte-range requests, which allows browser seeking.
+The time-lapse MP4 is about 53 MB, which increases the image size. Nginx serves it as a static MP4 and supports byte-range requests for browser seeking.

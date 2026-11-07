@@ -1,9 +1,23 @@
 # Website implementation
 
-The page is a static site served from this directory. The main scroll sequence is in `index.html`; global layout and breakpoints are in `src/style.css`; site data and GSAP timelines are in `src/app.js`.
+The site is a static HTML, CSS, and JavaScript application. No package manager or build step is required.
 
-The Story scene is a single persistent background behind the hands, Story, topic ribbon, topic details, and member sections. The video closing scene covers that background. Each topic detail is its own document in `public/topic-details/` and shares `src/topic-detail.css` and `src/topic-detail.js`.
+## Key files
 
-Start the server from the repository root with `python -m http.server 8000 --bind 127.0.0.1`, then open <http://127.0.0.1:8000/website/>.
+- `index.html` defines the page sections and their order.
+- `src/app.js` manages page data, language switching, video playback, and GSAP/ScrollTrigger timelines.
+- `src/style.css` contains the shared layout and responsive rules.
+- `src/topic-detail.css` and `src/topic-detail.js` are shared by the topic detail pages.
+- `public/scenes/` contains the embedded animated scenes.
+- `public/topic-details/` contains one HTML document per topic.
+- `public/assets/` contains images, logos, and video media.
 
-See the repository [editing guide](../docs/project-structure.md) and [content map](../docs/content-and-assets.md) before changing member names, topic copy, or tool labels.
+The Story scene runs as a persistent background behind the intro, topic sequence, and member sections. The closing section uses its own video background. Keep embedded scene backgrounds transparent where the shared background needs to remain visible.
+
+For local preview, start the static server from the repository root and open <http://127.0.0.1:8000/website/>:
+
+```powershell
+python -m http.server 8000 --bind 127.0.0.1
+```
+
+See the [project structure guide](../docs/project-structure.md) and [content and asset map](../docs/content-and-assets.md) before changing page data or asset references.
