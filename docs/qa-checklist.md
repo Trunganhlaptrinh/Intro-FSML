@@ -12,9 +12,15 @@ Use this checklist after changes to section layout, scroll animation, or respons
 ## Desktop review
 
 - Scroll from the hands intro through MAKE LIFE BETTER, the six topic cards, each of the six details, all member groups, and the closing time-lapse.
+- Check that desktop mouse-wheel movement feels slower and gives the scroll-linked scenes more time to read.
 - Repeat the sequence upward. Topic fade transitions should reverse without leaving a black curtain or blank iframe behind.
+- Confirm all six centered detail panels appear in order; only the active stage wrapper should be visible at each step.
+- Check that section dividers and decorative separator lines stay removed while card and tool-logo shapes remain intact.
 - Check that the Story particle scene remains visible over a black base from the intro through Former members, then gives way to the time-lapse.
+- Confirm there is a Story-only pause after Former members before the closing video and I LOVE SMART LAB fade in together.
+- Confirm the closing time-lapse starts hidden and blurred, then clears to its intended final brightness without changing the I LOVE SMART LAB typography.
 - Check the topic copy on the left and the white-backed tool marks on the right. Read each tool label against its image.
+- Confirm the topic iframe has no second visible scrollbar, repeated footer labels, or topic-count markers.
 - Confirm the video starts when its section enters view and pauses after leaving it.
 
 ## Mobile review

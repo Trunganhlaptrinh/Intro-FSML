@@ -32,6 +32,34 @@ const topicList = document.querySelector('#topicList');
 const topicDetailFrames = [...document.querySelectorAll('.topic-detail-frame')];
 const topicDetailStages = [...document.querySelectorAll('.topic-detail-stage')];
 const memberGroups = document.querySelector('#memberGroups');
+const storyMantra = document.querySelector('.story-mantra');
+const storyCharacters = [];
+if (storyMantra) {
+  const phrase = storyMantra.textContent.trim();
+  storyMantra.setAttribute('aria-label', phrase);
+  const phraseNodes = [];
+  phrase.split(' ').forEach((word, wordIndex) => {
+    if (wordIndex) {
+      const gap = document.createElement('span');
+      gap.className = 'mantra-space';
+      gap.setAttribute('aria-hidden', 'true');
+      gap.textContent = '\u00a0';
+      phraseNodes.push(gap);
+    }
+    const wordNode = document.createElement('span');
+    wordNode.className = 'mantra-word';
+    wordNode.setAttribute('aria-hidden', 'true');
+    [...word].forEach(letter => {
+      const character = document.createElement('span');
+      character.className = 'mantra-char';
+      character.textContent = letter;
+      wordNode.append(character);
+      storyCharacters.push(character);
+    });
+    phraseNodes.push(wordNode);
+  });
+  storyMantra.replaceChildren(...phraseNodes);
+}
 let language = 'en';
 
 topics.forEach((topic,i)=>{
@@ -68,6 +96,9 @@ topicDetailFrames.forEach(frame=>frame.addEventListener('load',()=>frame.content
 
 if(window.gsap&&window.ScrollTrigger){
   gsap.registerPlugin(ScrollTrigger);
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    ScrollTrigger.normalizeScroll({type:'wheel',wheelSpeed:.008,allowNestedScroll:true});
+  }
   const topicFrame=document.querySelector('#topicRibbon');
   const syncTopicScene=(progress=0)=>{
     const child=topicFrame?.contentWindow, track=child?.document?.querySelector('#track');
@@ -82,12 +113,13 @@ if(window.gsap&&window.ScrollTrigger){
   gsap.utils.toArray('.reveal').forEach((el)=>gsap.fromTo(el,{autoAlpha:0,y:34},{autoAlpha:1,y:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%',once:true}}));
   gsap.from('.intro-brand-label',{y:12,duration:.75,ease:'power3.out'});
   gsap.from('.intro-brand-title',{y:26,letterSpacing:'.12em',duration:1.05,ease:'power3.out',delay:.08});
-  gsap.from('.intro-brand-note',{autoAlpha:0,y:10,letterSpacing:'.55em',duration:.8,ease:'power2.out',delay:.45});
-  gsap.from('.story-copy>*',{y:24,duration:.9,stagger:.12,ease:'power2.out',scrollTrigger:{trigger:'#story',start:'top 70%',once:true}});
-  gsap.timeline({scrollTrigger:{trigger:'#story',start:'top top',end:'bottom bottom',scrub:1}})
-    .fromTo('.story-mantra',{scale:.9,letterSpacing:'.14em'},{scale:1,letterSpacing:'.075em',ease:'none'},0)
-    .fromTo('.story-copy>p:not(.eyebrow)',{y:24,opacity:.72},{y:-12,opacity:1,ease:'none'},.12)
-    .to('.story-copy',{opacity:0,ease:'none',duration:.28},.72);
+  gsap.from('.intro-brand-note',{y:10,letterSpacing:'.55em',duration:.8,ease:'power2.out',delay:.45});
+  gsap.timeline({scrollTrigger:{trigger:'#story',start:'top top',end:'bottom bottom',scrub:.8}})
+    .fromTo(storyCharacters,{autoAlpha:0,yPercent:70,scale:.78,filter:'blur(10px)'},{autoAlpha:1,yPercent:0,scale:1,filter:'blur(0px)',duration:.26,stagger:.055,ease:'power2.out'},0)
+    .fromTo('.story-copy>.eyebrow',{autoAlpha:0,y:22},{autoAlpha:1,y:0,duration:.35,ease:'none'},1)
+    .fromTo('.story-copy>p:not(.eyebrow)',{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:.42,ease:'none'},1.15)
+    .to('.story-mantra',{scale:1.035,letterSpacing:'.1em',duration:.35,ease:'none'},1.75)
+    .to('.story-copy',{autoAlpha:0,y:-30,duration:.5,ease:'none'},2.35);
   gsap.from('.members-header>*',{autoAlpha:0,y:18,duration:.8,stagger:.1,scrollTrigger:{trigger:'.members-header',start:'top 82%',once:true}});
   gsap.to('.progress i',{scaleX:1,ease:'none',scrollTrigger:{trigger:document.body,start:'top top',end:'bottom bottom',scrub:.2}});
   gsap.to('#intro',{autoAlpha:0,ease:'none',scrollTrigger:{trigger:'#story',start:'top bottom',end:'top top',scrub:true}});
@@ -95,18 +127,25 @@ if(window.gsap&&window.ScrollTrigger){
   gsap.to('#story',{autoAlpha:0,ease:'none',scrollTrigger:{trigger:'#topics',start:'top bottom',end:'top top',scrub:true}});
   gsap.fromTo('#topics',{autoAlpha:0},{autoAlpha:1,ease:'none',scrollTrigger:{trigger:'#topics',start:'top bottom',end:'top 35%',scrub:true}});
   gsap.fromTo('#details',{autoAlpha:0},{autoAlpha:1,ease:'none',scrollTrigger:{trigger:'#details',start:'top bottom',end:'top 35%',scrub:true}});
-  topicDetailStages.forEach(stage=>{
-    const frame=stage.querySelector('.topic-detail-frame');
-    const curtain=stage.querySelector('.topic-transition');
-    gsap.timeline({scrollTrigger:{trigger:stage,start:'top bottom',end:'bottom top',scrub:.45}})
-      .fromTo(frame,{autoAlpha:0,y:20,scale:1.018},{autoAlpha:1,y:0,scale:1,ease:'none',duration:.25},0)
-      .to(frame,{autoAlpha:0,y:-12,scale:.985,ease:'none',duration:.22},.78)
-      .to(curtain,{autoAlpha:.98,ease:'none',duration:.12},.82);
+  gsap.timeline({scrollTrigger:{trigger:'.details-intro-track',start:'top top',end:'bottom bottom',scrub:.75}})
+    .fromTo('.details-intro .eyebrow',{autoAlpha:0,y:16},{autoAlpha:1,y:0,duration:.22,ease:'none'},0)
+    .fromTo('.details-heading-line',{autoAlpha:0,y:24,clipPath:'inset(0 0 100% 0)',filter:'blur(8px)'},{autoAlpha:1,y:0,clipPath:'inset(0 0 0% 0)',filter:'blur(0px)',duration:.28,stagger:.16,ease:'none'},.12)
+    .fromTo('.details-support',{autoAlpha:0,y:16},{autoAlpha:1,y:0,duration:.24,ease:'none'},.82)
+    .to('.details-intro',{autoAlpha:0,y:-22,duration:.22,ease:'none'},1.35);
+  const topicSequence=document.querySelector('.topic-detail-sequence');
+  const topicSwap=gsap.timeline({scrollTrigger:{trigger:topicSequence,start:'top top',end:'bottom bottom',scrub:.65}});
+  topicDetailStages.forEach((stage,index)=>{
+    const start=index;
+    if(index>0) topicSwap.to(topicDetailStages[index-1],{autoAlpha:0,scale:1.025,y:-22,duration:.14,ease:'none'},start-.24);
+    topicSwap.fromTo(stage,{autoAlpha:0,scale:.975,y:24},{autoAlpha:1,scale:1,y:0,duration:.18,ease:'none'},start);
   });
-  gsap.to('#details',{autoAlpha:0,ease:'none',scrollTrigger:{trigger:'#members',start:'top 92%',end:'top 40%',scrub:true}});
-  gsap.fromTo('#members',{autoAlpha:.72},{autoAlpha:1,ease:'none',scrollTrigger:{trigger:'#members',start:'top 92%',end:'top 52%',scrub:true}});
-  gsap.to('#journeyBackground',{autoAlpha:0,ease:'none',scrollTrigger:{trigger:'#love',start:'top bottom',end:'top 35%',scrub:true}});
-  gsap.fromTo('#love',{yPercent:9},{yPercent:0,ease:'none',scrollTrigger:{trigger:'#love',start:'top bottom',end:'top top',scrub:true}});
+  topicSwap.to(topicDetailStages.at(-1),{autoAlpha:0,scale:1.025,y:-22,duration:.14,ease:'none'},5.74);
+  gsap.fromTo('#members',{autoAlpha:.12},{autoAlpha:1,ease:'none',scrollTrigger:{trigger:'#members',start:'top 45%',end:'top -30%',scrub:1}});
+  gsap.to('.members-header, #memberGroups',{autoAlpha:0,y:-20,ease:'none',scrollTrigger:{trigger:'#story-outro',start:'top bottom',end:'top top',scrub:.7}});
+  gsap.timeline({scrollTrigger:{trigger:'#love',start:'top bottom',end:'top top',scrub:.75}})
+    .fromTo('#love',{autoAlpha:0,yPercent:9},{autoAlpha:1,yPercent:0,ease:'none',duration:.45},0)
+    .fromTo('.timelapse',{opacity:0,scale:1.06,filter:'blur(18px)'},{opacity:.72,scale:1,filter:'blur(0px)',ease:'none',duration:.65},.08)
+    .to('#journeyBackground',{autoAlpha:0,ease:'none',duration:.35},.65);
 }
 
 // Let the closing timelapse start when the ending enters view; browsers may still require user gesture for playback.

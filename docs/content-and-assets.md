@@ -20,6 +20,8 @@
 
 Tool images are in `website/public/assets/tools/`. The SHA tile artwork spells the algorithm “SHA 256”; the visible label uses the standard technical name **SHA-256**.
 
+Topic card accent order: Software Engineering—green, Internet of Things—blue, Artificial Intelligence—purple, Robotics—yellow, Blockchain—orange, Cybersecurity—red.
+
 The Nmap logo is `website/public/assets/tools/nmap.png`, sourced from the [official Nmap image directory](https://nmap.org/images/). The Ghidra mark is `website/public/assets/tools/ghidra.svg`, sourced from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Ghidra_logo.svg); that file page credits Ryan Kurtz and states Apache License 2.0.
 
 The supplied topic deck has five topic slides. Robotics remains the sixth field from the existing site concept and has no dedicated slide in that deck.

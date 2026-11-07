@@ -22,7 +22,7 @@
     <section id="intro" class="scene intro-scene">
       <iframe class="reference-frame intro-frame" src="/website/public/scenes/intro-smart-lab.html" title="Smart Lab dot-hand opening scene" loading="eager"></iframe>
       <div class="scene-shade"></div>
-      <h1 class="intro-brand"><span class="intro-brand-label">FPTU <i>·</i> HANOI</span><span class="intro-brand-title">Smart Lab</span><span class="intro-brand-line" aria-hidden="true"></span><span class="intro-brand-note" data-en="RESEARCH · EXPERIMENT · BUILD" data-vi="NGHIÊN CỨU · THỬ NGHIỆM · KIẾN TẠO">RESEARCH · EXPERIMENT · BUILD</span></h1>
+      <h1 class="intro-brand" aria-label="FPTU Smart Lab"><span class="intro-brand-label">FPTU <i>·</i> HANOI</span><span class="intro-brand-title">SMART LAB</span><span class="intro-brand-line" aria-hidden="true"></span><span class="intro-brand-note" data-en="RESEARCH · EXPERIMENT · BUILD" data-vi="NGHIÊN CỨU · THỬ NGHIỆM · KIẾN TẠO">RESEARCH · EXPERIMENT · BUILD</span></h1>
     </section>
 
     <section id="story" class="scene story-scene">
@@ -42,22 +42,31 @@
     </section>
 
     <section id="details" class="details-scene">
-      <div class="details-intro"><p class="eyebrow" data-en="WHAT WE EXPLORE" data-vi="LĨNH VỰC NGHIÊN CỨU">WHAT WE EXPLORE</p><h2 data-en="Six ways to<br>shape tomorrow." data-vi="Sáu hướng đi<br>cho ngày mai.">Six ways to<br>shape tomorrow.</h2><p data-en="Research, build, test, repeat." data-vi="Nghiên cứu, xây dựng, thử nghiệm, lặp lại.">Research, build, test, repeat.</p></div>
+      <div class="details-intro-track">
+        <div class="details-intro">
+          <p class="eyebrow" data-en="WHAT WE EXPLORE" data-vi="LĨNH VỰC NGHIÊN CỨU">WHAT WE EXPLORE</p>
+          <h2><span class="details-heading-line" data-en="Six ways to" data-vi="Sáu hướng đi">Six ways to</span><span class="details-heading-line" data-en="shape tomorrow." data-vi="cho ngày mai.">shape tomorrow.</span></h2>
+          <p class="details-support" data-en="Research, build, test, repeat." data-vi="Nghiên cứu, xây dựng, thử nghiệm, lặp lại.">Research, build, test, repeat.</p>
+        </div>
+      </div>
       <div class="topic-detail-sequence">
-        <section class="topic-detail-stage"><iframe class="topic-detail-frame" src="/website/public/topic-details/software-engineering.html" title="Software Engineering topic details" loading="lazy"></iframe><div class="topic-transition"></div></section>
-        <section class="topic-detail-stage"><iframe class="topic-detail-frame" src="/website/public/topic-details/internet-of-things.html" title="Internet of Things topic details" loading="lazy"></iframe><div class="topic-transition"></div></section>
-        <section class="topic-detail-stage"><iframe class="topic-detail-frame" src="/website/public/topic-details/artificial-intelligence.html" title="Artificial Intelligence topic details" loading="lazy"></iframe><div class="topic-transition"></div></section>
-        <section class="topic-detail-stage"><iframe class="topic-detail-frame" src="/website/public/topic-details/robotics.html" title="Robotics topic details" loading="lazy"></iframe><div class="topic-transition"></div></section>
-        <section class="topic-detail-stage"><iframe class="topic-detail-frame" src="/website/public/topic-details/blockchain.html" title="Blockchain topic details" loading="lazy"></iframe><div class="topic-transition"></div></section>
-        <section class="topic-detail-stage"><iframe class="topic-detail-frame" src="/website/public/topic-details/cybersecurity.html" title="Cybersecurity topic details" loading="lazy"></iframe><div class="topic-transition"></div></section>
+        <div class="topic-detail-pin">
+          <section class="topic-detail-stage"><iframe class="topic-detail-frame" src="/website/public/topic-details/software-engineering.html" title="Software Engineering topic details"></iframe></section>
+          <section class="topic-detail-stage"><iframe class="topic-detail-frame" src="/website/public/topic-details/internet-of-things.html" title="Internet of Things topic details"></iframe></section>
+          <section class="topic-detail-stage"><iframe class="topic-detail-frame" src="/website/public/topic-details/artificial-intelligence.html" title="Artificial Intelligence topic details"></iframe></section>
+          <section class="topic-detail-stage"><iframe class="topic-detail-frame" src="/website/public/topic-details/robotics.html" title="Robotics topic details"></iframe></section>
+          <section class="topic-detail-stage"><iframe class="topic-detail-frame" src="/website/public/topic-details/blockchain.html" title="Blockchain topic details"></iframe></section>
+          <section class="topic-detail-stage"><iframe class="topic-detail-frame" src="/website/public/topic-details/cybersecurity.html" title="Cybersecurity topic details"></iframe></section>
+        </div>
       </div>
     </section>
 
     <section id="members" class="members-scene">
-      <div class="members-wash"></div>
       <div class="members-header"><p class="eyebrow" data-en="THE PEOPLE BEHIND THE WORK" data-vi="NHỮNG NGƯỜI TẠO NÊN HÀNH TRÌNH">THE PEOPLE BEHIND THE WORK</p><h2 data-en="Meet our community." data-vi="Gặp gỡ cộng đồng.">Meet our community.</h2><p data-en="Different paths, shared curiosity." data-vi="Những hành trình khác nhau, cùng chung sự tò mò.">Different paths, shared curiosity.</p></div>
       <div id="memberGroups" class="member-groups"></div>
     </section>
+
+    <section id="story-outro" class="story-outro" aria-hidden="true"></section>
 
     <section id="love" class="love-scene">
       <video id="timelapse" class="timelapse" poster="/website/public/assets/video/smart-lab-timelapse-poster.jpg" autoplay muted loop playsinline preload="auto">

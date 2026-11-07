@@ -23,5 +23,6 @@ Git LFS is used for the time-lapse video. Install Git LFS and run `git lfs insta
 - [Content, tools, and asset map](docs/content-and-assets.md)
 - [Desktop, reverse-scroll, and mobile QA checklist](docs/qa-checklist.md)
 - [Website implementation notes](website/README.md)
+- [Docker setup and deployment](docs/docker.md)
 
 Original references and source documents are kept in `RE/` and `material/`.
