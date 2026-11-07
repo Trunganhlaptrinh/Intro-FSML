@@ -1,0 +1,16 @@
+.git
+.github
+.vscode
+.idea
+RE
+material
+docs
+node_modules
+**/node_modules
+__pycache__
+*.py[cod]
+*.docx
+*.pptx
+*.mov
+Thumbs.db
+.DS_Store
