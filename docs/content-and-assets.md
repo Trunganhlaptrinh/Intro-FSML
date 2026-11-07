@@ -3,6 +3,7 @@
 ## Shared assets
 
 - Primary logo: `website/public/assets/brand/logo-smart-lab-remake.png`
+- Browser favicon: `website/public/assets/brand/favicon.png` and `favicon.ico`, generated from the supplied logo.
 - Member portraits: `website/public/assets/members/`. Filenames identify the member; `member-placeholder.png` is reused where a portrait is unavailable.
 - Persistent background scene: `website/public/scenes/smart-lab-story.html`
 - Closing video and poster: `website/public/assets/video/`
