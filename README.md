@@ -46,4 +46,5 @@ git lfs pull
 - [Content and assets](docs/content-and-assets.md)
 - [Visual QA checklist](docs/qa-checklist.md)
 - [Docker guide](docs/docker.md)
+- [Vercel deployment guide](docs/vercel-deployment.md)
 - [Contributor instructions](AGENTS.md)
