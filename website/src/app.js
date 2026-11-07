@@ -10,7 +10,7 @@ const groups = [
   ]},
   { title: 'Former', people: [
     ['Lam T. Vu','AI Specialist in Viettel Construction','lam-t-vu.jpeg'],['Duc-Anh Do','PhD In Computer Science @ SMU (Singapore)','duc-anh-do.jpeg'],
-    ['Dang Q. Vu','Pentester in Viettel Cyber Security','dang-q-vu.png'],['Khanh C. Nguyen','Embedded Software Engineer in FPT Sofware','khanh-c-nguyen.png'],
+    ['Quang D. Vu','Pentester in Viettel Cyber Security','dang-q-vu.png'],['Khanh C. Nguyen','Embedded Software Engineer in FPT Sofware','khanh-c-nguyen.png'],
     ['Lap Nguyen','Embedded Software Engineer in FPT Uni','lap-nguyen.jpeg'],['Khanh N. Ho','Security Expert in Kaspersky (Russia)','member-placeholder.png'],
     ['An Tran','AI Engineer in VinSmart Future','an-tran.jpeg'],['Mung T. Nguyen','AI Engineer in VNPT Group','mung-t-nguyen.png'],
     ['Hieu M. Tran','Web Developer in BIDV Bank','hieu-m-tran.jpeg'],['Xiu Mai','AI Reseacher in Kansai University (Japan)','xiu-mai.png'],
