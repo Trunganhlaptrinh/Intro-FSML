@@ -10,8 +10,8 @@ const groups = [
   ]},
   { title: 'Former', people: [
     ['Lam T. Vu','AI Specialist in Viettel Construction','lam-t-vu.jpeg'],['Duc-Anh Do','PhD In Computer Science @ SMU (Singapore)','duc-anh-do.jpeg'],
-    ['Quang D. Vu','Pentester in Viettel Cyber Security','dang-q-vu.png'],['Khanh C. Nguyen','Embedded Software Engineer in FPT Sofware','khanh-c-nguyen.png'],
-    ['Lap Nguyen','Embedded Software Engineer in FPT Uni','lap-nguyen.jpeg'],['Khanh N. Ho','Security Expert in Kaspersky (Russia)','member-placeholder.png'],
+    ['Quang D. Vu','Pentester in Viettel Cyber Security','dang-q-vu.png'],['Khanh C. Nguyen','Embedded Engineer in FPT Sofware','khanh-c-nguyen.png'],
+    ['Lap Nguyen','Embedded Engineer in FPT Uni','lap-nguyen.jpeg'],['Khanh N. Ho','Security Expert in Kaspersky (Russia)','member-placeholder.png'],
     ['An Tran','AI Engineer in VinSmart Future','an-tran.jpeg'],['Mung T. Nguyen','AI Engineer in VNPT Group','mung-t-nguyen.png'],
     ['Hieu M. Tran','Web Developer in BIDV Bank','hieu-m-tran.jpeg'],['Xiu Mai','AI Reseacher in Kansai University (Japan)','xiu-mai.png'],
     ['Duy-Anh Nguyen','Data Engineer in Austdoor Group','duy-anh-nguyen.jpeg'],['Quyen T. Nguyen','Full Stack Engineer in MegaAds Ltd','member-placeholder.png'],
@@ -96,7 +96,10 @@ topicDetailFrames.forEach(frame=>frame.addEventListener('load',()=>frame.content
 
 if(window.gsap&&window.ScrollTrigger){
   gsap.registerPlugin(ScrollTrigger);
-  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  // ScrollTrigger.normalizeScroll({type:'wheel'}) sets touch-action: pan-x on
+  // its target. Keep it off touch-capable devices so iOS Safari can process
+  // native vertical swipes; use it only to tune desktop mouse-wheel input.
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches && ScrollTrigger.isTouch===0){
     ScrollTrigger.normalizeScroll({type:'wheel',wheelSpeed:.008,allowNestedScroll:true});
   }
   const topicFrame=document.querySelector('#topicRibbon');
@@ -147,6 +150,46 @@ if(window.gsap&&window.ScrollTrigger){
     .fromTo('.timelapse',{opacity:0,scale:1.06,filter:'blur(18px)'},{opacity:.72,scale:1,filter:'blur(0px)',ease:'none',duration:.65},.08)
     .to('#journeyBackground',{autoAlpha:0,ease:'none',duration:.35},.65);
 }
+
+// Hidden presentation shortcut: press 9 to scroll slowly to the page end.
+// Press 9 again, or begin a manual scroll/touch, to stop it immediately.
+let guidedScrollFrame=0;
+let guidedScrollActive=false;
+function stopGuidedScroll(){
+  if(!guidedScrollActive)return;
+  guidedScrollActive=false;
+  cancelAnimationFrame(guidedScrollFrame);
+}
+function startGuidedScroll(){
+  const startY=window.scrollY;
+  const maxScroll=()=>Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
+  const distance=maxScroll()-startY;
+  if(distance<=1)return;
+  guidedScrollActive=true;
+  const startedAt=performance.now();
+  const duration=Math.max(30000,distance/160*1000);
+  const step=now=>{
+    if(!guidedScrollActive)return;
+    const progress=Math.min(1,(now-startedAt)/duration);
+    const currentMax=maxScroll();
+    window.scrollTo(0,startY+(currentMax-startY)*progress);
+    if(progress<1)guidedScrollFrame=requestAnimationFrame(step);
+    else stopGuidedScroll();
+  };
+  guidedScrollFrame=requestAnimationFrame(step);
+}
+document.addEventListener('keydown',event=>{
+  const target=event.target;
+  if(target instanceof HTMLElement && (target.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)))return;
+  if(event.key==='9'||event.code==='Numpad9'){
+    event.preventDefault();
+    if(guidedScrollActive)stopGuidedScroll();
+    else startGuidedScroll();
+    return;
+  }
+  if(guidedScrollActive&&['ArrowDown','PageDown','End',' '].includes(event.key))stopGuidedScroll();
+});
+['wheel','touchstart','pointerdown'].forEach(type=>document.addEventListener(type,stopGuidedScroll,{passive:true}));
 
 // Let the closing timelapse start when the ending enters view; browsers may still require user gesture for playback.
 const video=document.querySelector('#timelapse');

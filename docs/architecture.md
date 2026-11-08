@@ -45,7 +45,7 @@ flowchart TD
 
 | Concern | Owner | Notes |
 | --- | --- | --- |
-| Main page reveal, section transitions, language toggle, and video playback | `website/src/app.js` | GSAP and ScrollTrigger load from local vendor files. Scrubbed transitions reverse when scrolling upward. Wheel input is reduced on fine-pointer devices; touch scrolling remains native. |
+| Main page reveal, section transitions, language toggle, and video playback | `website/src/app.js` | GSAP and ScrollTrigger load from local vendor files. Scrubbed transitions reverse when scrolling upward. Wheel input is reduced on mouse-only devices; touch scrolling remains native. Press `9` for a slow guided scroll to the page end; press it again or start manual scrolling to cancel. |
 | Dot hands | `website/public/scenes/intro-smart-lab.html` | Embedded in the intro. |
 | Persistent Story | `website/public/scenes/smart-lab-story.html` | A single iframe sits behind the main sequence. Keep its background dark and unobtrusive. |
 | Six-topic ribbon | `website/public/scenes/smart-lab-topics.html` | Three.js 0.170.0 is imported from jsDelivr through an import map. |

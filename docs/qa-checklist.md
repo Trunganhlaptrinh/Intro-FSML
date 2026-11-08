@@ -32,6 +32,8 @@ With the server running, confirm that `/website/`, all three scene documents, si
 - Confirm topic copy and tool marks fit without clipping or horizontal scrolling.
 - Confirm member portraits, names, and roles remain readable in the responsive member grid.
 - Check that the continuous background stays subtle and does not reduce text contrast.
+- On a touch device, verify vertical swipes scroll the page normally through the pinned topic scenes and member sections.
+- On desktop, press `9` to confirm the guided slow scroll reaches the footer; press `9` again or use the wheel to cancel it.
 
 ## Reporting results
 
