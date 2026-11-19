@@ -287,7 +287,7 @@ function render() {
 /* ---------- loop ---------- */
 function loop() {
   if (!frozen) {
-    p += (target - p) * .18;
+    p += (target - p) * .09;
     if (Math.abs(target - p) < .00005) p = target;
     render();
   }
