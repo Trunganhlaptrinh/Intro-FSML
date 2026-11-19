@@ -38,16 +38,16 @@ The six standalone topic pages share `website/src/topic-detail.css` and `website
 
 The English-only Scientific Papers sequence is in `website/index.html`, between the topic details and member sections. It contains nine linked titles and author names, shown in two scroll stages.
 
-The first stage contains the four papers prioritized by the user:
+The first stage contains these four papers in display order:
 
-1. Attention correlated appearance and motion feature followed temporal learning for activity recognition
+1. Vision–Language–Action Models for Robotic Manipulation: A Critical Review of Design Choices, Evidence, and Emerging Frontiers
 2. Edge-Based Blockchain Design for IoT Security
 3. Face and Hand Gesture Recognition for Secure Control of Equipment
 4. Driver Fatigue Prediction Using Different Sensor Data with Deep Learning
 
 The second stage contains:
 
-1. Vision–Language–Action Models for Robotic Manipulation: A Critical Review of Design Choices, Evidence, and Emerging Frontiers
+1. Attention correlated appearance and motion feature followed temporal learning for activity recognition
 2. Scalable and Fair Federated Learning for Heterogeneous Devices via Cluster-Based Optimization
 3. A Hybrid Blockchain Framework for Secure Multi-domain Data Protection with Steganography
 4. Enhancing Data Efficiency in Reinforcement Learning Using Autoencoders: A DDPG Framework

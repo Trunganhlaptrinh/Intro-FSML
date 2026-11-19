@@ -22,7 +22,7 @@ With the server running, confirm that `/website/`, all three scene documents, si
 - Confirm each centered detail panel appears in order and only the active panel is visible.
 - Confirm the six topic cards use the matching supplied images and keep their colored frames and text legible.
 - Confirm each topic detail shows its outcome below the title and a four-step roadmap on the right, without tool logos.
-- Confirm Scientific Papers has three stages: title, four prioritized papers, then five remaining papers. Check all nine title links and author names.
+- Confirm Scientific Papers has three stages: title, four papers, then five papers. Check all nine title links and author names, including the centered bottom row in the five-paper stage.
 - Check that decorative dividers, duplicate scrollbars, repeated footer labels, and topic counters are absent where they are not part of the design.
 - Confirm the Story particle scene remains visible over a dark base from the intro through Former members, then yields to the time-lapse.
 - Check the Story-only pause after Former members and the coordinated appearance of the video and closing title.

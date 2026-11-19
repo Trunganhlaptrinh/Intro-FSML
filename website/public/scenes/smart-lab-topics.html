@@ -161,21 +161,13 @@ function drawTopicPoster(index, title, subtitle, photo = FIELD_IMAGES[index]) {
     const scale = Math.max(1200 / photo.naturalWidth, 760 / photo.naturalHeight);
     const width = photo.naturalWidth * scale, height = photo.naturalHeight * scale;
     ctx.drawImage(photo, (1200 - width) / 2, (760 - height) / 2, width, height);
-    ctx.fillStyle = 'rgba(2,4,8,.30)'; ctx.fillRect(0, 0, 1200, 760);
   } else {
     ctx.fillStyle = '#050608'; ctx.fillRect(0, 0, 1200, 760);
   }
-  const shade = ctx.createLinearGradient(0, 320, 0, 760);
-  shade.addColorStop(0, 'rgba(2,4,8,0)'); shade.addColorStop(.52, 'rgba(2,4,8,.76)'); shade.addColorStop(1, 'rgba(2,4,8,.9)');
+  const shade = ctx.createLinearGradient(0, 565, 0, 760);
+  shade.addColorStop(0, 'rgba(2,4,8,0)'); shade.addColorStop(.55, 'rgba(2,4,8,.22)'); shade.addColorStop(1, 'rgba(2,4,8,.58)');
   ctx.fillStyle = shade; ctx.fillRect(0, 0, 1200, 760);
-  const glow = ctx.createRadialGradient(890, 255, 10, 890, 255, 470);
-  glow.addColorStop(0, tint(.12)); glow.addColorStop(1, tint(0));
-  ctx.fillStyle = glow; ctx.fillRect(0, 0, 1200, 760);
   ctx.strokeStyle = tint(.82); ctx.lineWidth = 4; ctx.beginPath(); ctx.roundRect(28, 28, 1144, 704, 18); ctx.stroke();
-  ctx.strokeStyle = tint(.18); ctx.lineWidth = 2;
-  for (let k = 0; k < 7; k++) { ctx.beginPath(); ctx.arc(880, 250, 72 + k * 54, 0, Math.PI * 2); ctx.stroke(); }
-  ctx.strokeStyle = tint(.48); ctx.lineWidth = 3;
-  for (let k = 0; k < 5; k++) { const y = 80 + k * 35; ctx.beginPath(); ctx.moveTo(72, y); ctx.lineTo(72 + 110 + k * 45, y); ctx.lineTo(360 + k * 25, y + 92); ctx.stroke(); }
   ctx.fillStyle = accent; ctx.fillRect(76, 518, 76, 4);
   ctx.fillStyle = '#fff'; ctx.font = '400 88px "DM Serif Display", Georgia, serif'; ctx.fillText(title, 76, 624, 1040);
   ctx.fillStyle = 'rgba(245,247,250,.92)'; ctx.font = '500 30px Manrope, Arial, sans-serif'; ctx.fillText(subtitle, 78, 686, 1040);
