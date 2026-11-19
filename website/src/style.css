@@ -99,10 +99,9 @@ main,.site-footer{position:relative;z-index:1}
 .topic-ribbon{position:sticky;top:0;z-index:1;background:transparent;pointer-events:none}
 .details-scene{position:relative;min-height:0;padding:0 0 18svh;overflow:clip;isolation:isolate;background:transparent}
 .details-intro-track{position:relative;height:420svh}
-.details-intro{position:sticky;top:0;z-index:1;height:100svh;min-height:100svh;margin:0;padding:16vh 8vw 8vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(90deg,rgba(0,0,0,.34),rgba(0,0,0,.1) 74%,rgba(0,0,0,.24))}
-.details-intro h2{font-size:clamp(50px,6.2vw,96px);line-height:1.02;overflow:hidden}
-.details-intro h2{width:max-content;max-width:100%;text-align:center;white-space:nowrap;font-size:clamp(18px,5vw,72px)}
-.details-heading-line{display:block;white-space:nowrap;will-change:clip-path,transform,opacity}
+.details-intro{position:sticky;top:0;z-index:1;width:100%;max-width:none;height:100svh;min-height:100svh;margin:0;padding:16vh 8vw 8vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(90deg,rgba(0,0,0,.34),rgba(0,0,0,.1) 74%,rgba(0,0,0,.24))}
+.details-intro h2{display:flex;justify-content:center;width:100%;max-width:none;margin-inline:0;font-size:clamp(18px,5vw,72px);line-height:1.02;overflow:visible;text-align:center;white-space:nowrap}
+.details-heading-line{display:block;width:max-content;white-space:nowrap;will-change:clip-path,transform,opacity}
 .details-support{margin-top:8px}
 .details-intro .eyebrow{font-size:12px;letter-spacing:.28em}
 .details-intro .details-support{font:clamp(16px,1.4vw,20px)/1.7 var(--serif)}
