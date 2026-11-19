@@ -16,10 +16,13 @@ With the server running, confirm that `/website/`, all three scene documents, si
 
 ## Desktop review
 
-- Scroll through the intro, MAKE LIFE BETTER, topic cards, all six topic details, member groups, and closing video.
+- Scroll through the intro, MAKE LIFE BETTER, topic cards, all six topic details, both Scientific Papers groups, member groups, and closing video.
 - Check that mouse-wheel movement gives scroll-linked scenes time to read.
 - Repeat the sequence upward. Transitions should reverse without leaving a blank iframe or dark overlay behind.
 - Confirm each centered detail panel appears in order and only the active panel is visible.
+- Confirm the six topic cards use the matching supplied images and keep their colored frames and text legible.
+- Confirm each topic detail shows its outcome below the title and a four-step roadmap on the right, without tool logos.
+- Confirm Scientific Papers has three stages: title, four prioritized papers, then five remaining papers. Check all nine title links and author names.
 - Check that decorative dividers, duplicate scrollbars, repeated footer labels, and topic counters are absent where they are not part of the design.
 - Confirm the Story particle scene remains visible over a dark base from the intro through Former members, then yields to the time-lapse.
 - Check the Story-only pause after Former members and the coordinated appearance of the video and closing title.
@@ -30,6 +33,7 @@ With the server running, confirm that `/website/`, all three scene documents, si
 
 - Check at a narrow phone width and a tablet width.
 - Confirm topic copy and tool marks fit without clipping or horizontal scrolling.
+- Confirm the topic roadmap and outcomes fit without clipping, and the five-paper stage remains readable on a phone.
 - Confirm member portraits, names, and roles remain readable in the responsive member grid.
 - Check that the continuous background stays subtle and does not reduce text contrast.
 - On a touch device, verify vertical swipes scroll the page normally through the pinned topic scenes and member sections.

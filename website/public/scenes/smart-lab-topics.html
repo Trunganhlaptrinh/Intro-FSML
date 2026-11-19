@@ -143,20 +143,36 @@ void main(){
   gl_FragColor=vec4(mix(c,vec3(1.),edge*.1),a);
 }`;
 const FIELD_COLORS = ['#86E3A3', '#68B9FF', '#BE91FF', '#FFD166', '#FF9B63', '#FF7777'];
-function drawTopicPoster(index, title, subtitle) {
+const FIELD_IMAGES = [
+  '/website/public/assets/topics/software-engineering.png',
+  '/website/public/assets/topics/internet-of-things.png',
+  '/website/public/assets/topics/artificial-intelligence.jpg',
+  '/website/public/assets/topics/robotics.png',
+  '/website/public/assets/topics/blockchain.png',
+  '/website/public/assets/topics/cybersecurity.png',
+].map(src => { const image = new Image(); image.src = src; return image; });
+function drawTopicPoster(index, title, subtitle, photo = FIELD_IMAGES[index]) {
   const poster = document.createElement('canvas'); poster.width = 1200; poster.height = 760;
   const ctx = poster.getContext('2d');
   const accent = FIELD_COLORS[index];
   const rgb = accent.match(/[\da-f]{2}/gi).map(value => parseInt(value, 16)).join(',');
   const tint = alpha => `rgba(${rgb},${alpha})`;
-  const bg = ctx.createLinearGradient(0, 0, 1200, 760);
-  bg.addColorStop(0, '#08090b'); bg.addColorStop(.55, '#0b0c0e'); bg.addColorStop(1, '#030405');
-  ctx.fillStyle = bg; ctx.fillRect(0, 0, 1200, 760);
+  if (photo?.complete && photo.naturalWidth) {
+    const scale = Math.max(1200 / photo.naturalWidth, 760 / photo.naturalHeight);
+    const width = photo.naturalWidth * scale, height = photo.naturalHeight * scale;
+    ctx.drawImage(photo, (1200 - width) / 2, (760 - height) / 2, width, height);
+    ctx.fillStyle = 'rgba(2,4,8,.30)'; ctx.fillRect(0, 0, 1200, 760);
+  } else {
+    ctx.fillStyle = '#050608'; ctx.fillRect(0, 0, 1200, 760);
+  }
+  const shade = ctx.createLinearGradient(0, 320, 0, 760);
+  shade.addColorStop(0, 'rgba(2,4,8,0)'); shade.addColorStop(.52, 'rgba(2,4,8,.76)'); shade.addColorStop(1, 'rgba(2,4,8,.9)');
+  ctx.fillStyle = shade; ctx.fillRect(0, 0, 1200, 760);
   const glow = ctx.createRadialGradient(890, 255, 10, 890, 255, 470);
-  glow.addColorStop(0, tint(.14)); glow.addColorStop(1, tint(0));
+  glow.addColorStop(0, tint(.12)); glow.addColorStop(1, tint(0));
   ctx.fillStyle = glow; ctx.fillRect(0, 0, 1200, 760);
-  ctx.strokeStyle = tint(.78); ctx.lineWidth = 4; ctx.beginPath(); ctx.roundRect(28, 28, 1144, 704, 18); ctx.stroke();
-  ctx.strokeStyle = tint(.25); ctx.lineWidth = 2;
+  ctx.strokeStyle = tint(.82); ctx.lineWidth = 4; ctx.beginPath(); ctx.roundRect(28, 28, 1144, 704, 18); ctx.stroke();
+  ctx.strokeStyle = tint(.18); ctx.lineWidth = 2;
   for (let k = 0; k < 7; k++) { ctx.beginPath(); ctx.arc(880, 250, 72 + k * 54, 0, Math.PI * 2); ctx.stroke(); }
   ctx.strokeStyle = tint(.48); ctx.lineWidth = 3;
   for (let k = 0; k < 5; k++) { const y = 80 + k * 35; ctx.beginPath(); ctx.moveTo(72, y); ctx.lineTo(72 + 110 + k * 45, y); ctx.lineTo(360 + k * 25, y + 92); ctx.stroke(); }
@@ -177,9 +193,13 @@ const cards = WORK.map(([title, subtitle], i) => {
 });
 
 /* ---------- layout ---------- */
-function redrawPoster(card, title, subtitle) {
-  card.tex.image = drawTopicPoster(card.i, title, subtitle); card.tex.needsUpdate = true; card.title = title;
+function redrawPoster(card, title, subtitle, photo = FIELD_IMAGES[card.i]) {
+  card.tex.image = drawTopicPoster(card.i, title, subtitle, photo); card.tex.needsUpdate = true; card.title = title;
 }
+FIELD_IMAGES.forEach((photo, index) => photo.addEventListener('load', () => {
+  const card = cards[index];
+  if (card) redrawPoster(card, card.title, (document.documentElement.lang === 'vi' ? WORK_VI : WORK)[index][1], photo);
+}));
 
 function setSceneLanguage(lang) {
   const vi = lang === 'vi';
