@@ -221,7 +221,7 @@ function grid(i) {
 }
 
 /* ---------- scroll ---------- */
-let target = 0, p = 0, frozen = false;
+let target = 0, frozen = false;
 const readScroll = () => { const t = $('track'); target = clamp(scrollY / (t.offsetHeight - innerHeight)); };
 addEventListener('scroll', readScroll, {passive:true}); readScroll();
 
@@ -255,7 +255,7 @@ function poseGrid(c, q) {
 const RIB_A = .14, RIB_B = .63;
 function setVideos(fn) { cards.forEach(c => fn(c)); }
 function render() {
-  const pp = p;
+  const pp = target;
   // headline runs right across the page in opposite directions
   const rise = 1 - out(span(pp, 0, .12));
   const run = mix(-120, 120, span(pp, .015, .61));
@@ -286,11 +286,7 @@ function render() {
 
 /* ---------- loop ---------- */
 function loop() {
-  if (!frozen) {
-    p += (target - p) * .18;
-    if (Math.abs(target - p) < .00005) p = target;
-    render();
-  }
+  if (!frozen) render();
   requestAnimationFrame(loop);
 }
 loop();
