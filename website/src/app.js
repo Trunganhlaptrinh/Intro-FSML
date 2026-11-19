@@ -6,13 +6,13 @@ const groups = [
   ]},
   { title: 'Present', people: [
     ['Dat T. M. Bui','HR x AI Reseacher','member-placeholder.png'],['Chau M. D. Dang','AI Reseacher','chau-m-d-dang.png'],['Trung-Anh Nguyen','Lead of Security','trung-anh-nguyen.jpeg'],
-    ['Hung Tran','Lead of Robotics','member-placeholder.png'],['Hieu D. Dinh','Lead of AI','member-placeholder.png'],['Hai-Anh Nguyen','AI Reseacher','hai-anh-nguyen.png'],['Hai Dang','AI Engineer','hai-dang.jpeg'],
+    ['Hung Tran','Lead of Robotics','member-placeholder.png'],['Hieu D. Dinh','Lead of AI','member-placeholder.png'],['Hai-Anh Nguyen','AI Reseacher','hai-anh-nguyen.png'],['Dang H. Trinh','AI Engineer','hai-dang.jpeg'],
   ]},
   { title: 'Former', people: [
     ['Lam T. Vu','AI Specialist in Viettel Construction','lam-t-vu.jpeg'],['Duc-Anh Do','PhD In Computer Science @ SMU (Singapore)','duc-anh-do.jpeg'],
     ['Quang D. Vu','Pentester in Viettel Cyber Security','dang-q-vu.png'],['Khanh C. Nguyen','Embedded Engineer in FPT Sofware','khanh-c-nguyen.png'],
-    ['Lap Nguyen','Embedded Engineer in FPT Uni','lap-nguyen.jpeg'],['Khanh N. Ho','Security Expert in Kaspersky (Russia)','member-placeholder.png'],
-    ['An Tran','AI Engineer in VinSmart Future','an-tran.jpeg'],['Mung T. Nguyen','AI Engineer in VNPT Group','mung-t-nguyen.png'],
+    ['Lap Nguyen','Embedded Engineer in FPT Software','lap-nguyen.jpeg'],['Khanh N. Ho','Security Expert in Kaspersky (Russia)','member-placeholder.png'],
+    ['An D. Tran','AI Engineer in VinSmart Future','an-tran.jpeg'],['Mung T. Nguyen','AI Engineer in VNPT Group','mung-t-nguyen.png'],
     ['Hieu M. Tran','Web Developer in BIDV Bank','hieu-m-tran.jpeg'],['Xiu Mai','AI Reseacher in Kansai University (Japan)','xiu-mai.png'],
     ['Duy-Anh Nguyen','Data Engineer in Austdoor Group','duy-anh-nguyen.jpeg'],['Quyen T. Nguyen','Full Stack Engineer in MegaAds Ltd','member-placeholder.png'],
     ['Trung Tran','AI Engineer at Viettel Group','trung-tran.jpeg'],
@@ -133,7 +133,7 @@ if(window.gsap&&window.ScrollTrigger){
   gsap.fromTo('#details',{autoAlpha:0},{autoAlpha:1,ease:'none',scrollTrigger:{trigger:'#details',start:'top bottom',end:'top 35%',scrub:true}});
   gsap.timeline({scrollTrigger:{trigger:'.details-intro-track',start:'top top',end:'bottom bottom',scrub:.75}})
     .fromTo('.details-intro .eyebrow',{autoAlpha:0,y:16},{autoAlpha:1,y:0,duration:.22,ease:'none'},0)
-    .fromTo('.details-heading-line',{autoAlpha:0,y:24,clipPath:'inset(0 0 100% 0)',filter:'blur(8px)'},{autoAlpha:1,y:0,clipPath:'inset(0 0 0% 0)',filter:'blur(0px)',duration:.28,stagger:.16,ease:'none'},.12)
+    .fromTo('.details-heading-line',{autoAlpha:0,y:24,clipPath:'inset(0 100% 0 0)',filter:'blur(8px)'},{autoAlpha:1,y:0,clipPath:'inset(0 0 0 0)',filter:'blur(0px)',duration:.28,stagger:.16,ease:'none'},.12)
     .fromTo('.details-support',{autoAlpha:0,y:16},{autoAlpha:1,y:0,duration:.24,ease:'none'},.82)
     .to('.details-intro',{autoAlpha:0,y:-22,duration:.22,ease:'none'},1.35);
   const topicSequence=document.querySelector('.topic-detail-sequence');

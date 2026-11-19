@@ -99,8 +99,9 @@ main,.site-footer{position:relative;z-index:1}
 .topic-ribbon{position:sticky;top:0;z-index:1;background:transparent;pointer-events:none}
 .details-scene{position:relative;min-height:0;padding:0 0 18svh;overflow:clip;isolation:isolate;background:transparent}
 .details-intro-track{position:relative;height:420svh}
-.details-intro{position:sticky;top:0;z-index:1;height:100svh;min-height:100svh;margin:0;padding:16vh 8vw 8vh;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(90deg,rgba(0,0,0,.34),rgba(0,0,0,.1) 74%,rgba(0,0,0,.24))}
+.details-intro{position:sticky;top:0;z-index:1;height:100svh;min-height:100svh;margin:0;padding:16vh 8vw 8vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(90deg,rgba(0,0,0,.34),rgba(0,0,0,.1) 74%,rgba(0,0,0,.24))}
 .details-intro h2{font-size:clamp(50px,6.2vw,96px);line-height:1.02;overflow:hidden}
+.details-intro h2{width:fit-content;max-width:100%;text-align:center}
 .details-heading-line{display:block;will-change:clip-path,transform,opacity}
 .details-support{margin-top:8px}
 .details-intro .eyebrow{font-size:12px;letter-spacing:.28em}

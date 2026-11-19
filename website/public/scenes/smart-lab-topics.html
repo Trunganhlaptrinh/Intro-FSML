@@ -75,20 +75,20 @@ html,body,.stage{background:transparent!important}
 import * as THREE from 'three';
 
 const WORK = [
-  ['Software Engineering', 'PRODUCT · SYSTEMS · ENGINEERING'],
-  ['Internet of Things', 'CONNECTED DEVICES · EMBEDDED'],
-  ['Artificial Intelligence', 'MACHINE LEARNING · DATA'],
-  ['Robotics', 'AUTONOMY · MECHATRONICS'],
-  ['Blockchain', 'DISTRIBUTED SYSTEMS · TRUST'],
-  ['Cybersecurity', 'SECURITY · RESILIENCE'],
+  'Software Engineering',
+  'Internet of Things',
+  'Artificial Intelligence',
+  'Robotics',
+  'Blockchain',
+  'Cybersecurity',
 ];
 const WORK_VI = [
-  ['Công nghệ phần mềm', 'SẢN PHẨM · HỆ THỐNG · KỸ THUẬT'],
-  ['Internet vạn vật', 'THIẾT BỊ KẾT NỐI · HỆ THỐNG NHÚNG'],
-  ['Trí tuệ nhân tạo', 'HỌC MÁY · DỮ LIỆU'],
-  ['Robot học', 'TỰ ĐỘNG HÓA · CƠ ĐIỆN TỬ'],
-  ['Chuỗi khối', 'HỆ PHÂN TÁN · TÍNH TIN CẬY'],
-  ['An toàn thông tin', 'BẢO MẬT · KHẢ NĂNG CHỐNG CHỊU'],
+  'Công nghệ phần mềm',
+  'Internet vạn vật',
+  'Trí tuệ nhân tạo',
+  'Robot học',
+  'Chuỗi khối',
+  'An toàn thông tin',
 ];
 const $ = id => document.getElementById(id);
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -151,7 +151,7 @@ const FIELD_IMAGES = [
   '/website/public/assets/topics/blockchain.png',
   '/website/public/assets/topics/cybersecurity.png',
 ].map(src => { const image = new Image(); image.src = src; return image; });
-function drawTopicPoster(index, title, subtitle, photo = FIELD_IMAGES[index]) {
+function drawTopicPoster(index, title, photo = FIELD_IMAGES[index]) {
   const poster = document.createElement('canvas'); poster.width = 1200; poster.height = 760;
   const ctx = poster.getContext('2d');
   const accent = FIELD_COLORS[index];
@@ -168,13 +168,12 @@ function drawTopicPoster(index, title, subtitle, photo = FIELD_IMAGES[index]) {
   shade.addColorStop(0, 'rgba(2,4,8,0)'); shade.addColorStop(.55, 'rgba(2,4,8,.22)'); shade.addColorStop(1, 'rgba(2,4,8,.58)');
   ctx.fillStyle = shade; ctx.fillRect(0, 0, 1200, 760);
   ctx.strokeStyle = tint(.82); ctx.lineWidth = 4; ctx.beginPath(); ctx.roundRect(28, 28, 1144, 704, 18); ctx.stroke();
-  ctx.fillStyle = accent; ctx.fillRect(76, 518, 76, 4);
-  ctx.fillStyle = '#fff'; ctx.font = '400 88px "DM Serif Display", Georgia, serif'; ctx.fillText(title, 76, 624, 1040);
-  ctx.fillStyle = 'rgba(245,247,250,.92)'; ctx.font = '500 30px Manrope, Arial, sans-serif'; ctx.fillText(subtitle, 78, 686, 1040);
+  ctx.fillStyle = accent; ctx.fillRect(76, 566, 76, 4);
+  ctx.fillStyle = '#fff'; ctx.font = '400 88px "DM Serif Display", Georgia, serif'; ctx.fillText(title, 76, 676, 1040);
   return poster;
 }
-const cards = WORK.map(([title, subtitle], i) => {
-  const poster = drawTopicPoster(i, title, subtitle);
+const cards = WORK.map((title, i) => {
+  const poster = drawTopicPoster(i, title);
   const tex = new THREE.CanvasTexture(poster);
   tex.colorSpace = THREE.SRGBColorSpace; tex.minFilter = THREE.LinearFilter; tex.magFilter = THREE.LinearFilter; tex.generateMipmaps = false;
   const geo = new THREE.PlaneGeometry(1, 1, NX, NY);
@@ -185,12 +184,12 @@ const cards = WORK.map(([title, subtitle], i) => {
 });
 
 /* ---------- layout ---------- */
-function redrawPoster(card, title, subtitle, photo = FIELD_IMAGES[card.i]) {
-  card.tex.image = drawTopicPoster(card.i, title, subtitle, photo); card.tex.needsUpdate = true; card.title = title;
+function redrawPoster(card, title, photo = FIELD_IMAGES[card.i]) {
+  card.tex.image = drawTopicPoster(card.i, title, photo); card.tex.needsUpdate = true; card.title = title;
 }
 FIELD_IMAGES.forEach((photo, index) => photo.addEventListener('load', () => {
   const card = cards[index];
-  if (card) redrawPoster(card, card.title, (document.documentElement.lang === 'vi' ? WORK_VI : WORK)[index][1], photo);
+  if (card) redrawPoster(card, card.title, photo);
 }));
 
 function setSceneLanguage(lang) {
@@ -198,7 +197,7 @@ function setSceneLanguage(lang) {
   document.documentElement.lang = vi ? 'vi' : 'en';
   $('l2').querySelector('span').textContent = vi ? 'NGHIÊN CỨU' : 'RESEARCH';
   $('cap').textContent = vi ? 'Sáu lĩnh vực. Chung một niềm say mê khám phá.' : 'Six fields. One shared curiosity.';
-  cards.forEach((card, i) => redrawPoster(card, ...(vi ? WORK_VI[i] : WORK[i])));
+  cards.forEach((card, i) => redrawPoster(card, (vi ? WORK_VI : WORK)[i]));
 }
 
 addEventListener('message', event => {
