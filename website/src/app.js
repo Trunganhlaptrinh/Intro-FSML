@@ -100,8 +100,8 @@ if(window.gsap&&window.ScrollTrigger){
   // ScrollTrigger.normalizeScroll({type:'wheel'}) sets touch-action: pan-x on
   // its target. Keep it off touch-capable devices so iOS Safari can process
   // native vertical swipes; use it only to tune desktop mouse-wheel input.
-  if(!matchMedia('(prefers-reduced-motion: reduce)').matches && ScrollTrigger.isTouch===0){
-    ScrollTrigger.normalizeScroll({type:'wheel',wheelSpeed:.008,allowNestedScroll:true});
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches && matchMedia('(hover: hover) and (pointer: fine)').matches){
+    ScrollTrigger.normalizeScroll({type:'wheel',wheelSpeed:.005,allowNestedScroll:true});
   }
   const topicFrame=document.querySelector('#topicRibbon');
   const syncTopicScene=(progress=0)=>{
@@ -118,26 +118,26 @@ if(window.gsap&&window.ScrollTrigger){
   gsap.from('.intro-brand-label',{y:12,duration:.75,ease:'power3.out'});
   gsap.from('.intro-brand-title',{y:26,letterSpacing:'.12em',duration:1.05,ease:'power3.out',delay:.08});
   gsap.from('.intro-brand-note',{y:10,letterSpacing:'.55em',duration:.8,ease:'power2.out',delay:.45});
-  gsap.timeline({scrollTrigger:{trigger:'#story',start:'top top',end:'bottom bottom',scrub:.8}})
+  gsap.timeline({scrollTrigger:{trigger:'#story',start:'top top',end:'bottom bottom',scrub:true}})
     .fromTo(storyCharacters,{autoAlpha:0,yPercent:70,scale:.78,filter:'blur(10px)'},{autoAlpha:1,yPercent:0,scale:1,filter:'blur(0px)',duration:.26,stagger:.055,ease:'power2.out'},0)
     .fromTo('.story-copy>.eyebrow',{autoAlpha:0,y:22},{autoAlpha:1,y:0,duration:.35,ease:'none'},1)
     .fromTo('.story-copy>p:not(.eyebrow)',{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:.42,ease:'none'},1.15)
     .to('.story-mantra',{scale:1.035,letterSpacing:'.1em',duration:.35,ease:'none'},1.75)
     .to('.story-copy',{autoAlpha:0,y:-30,duration:.5,ease:'none'},2.35);
   gsap.from('.members-header>*',{autoAlpha:0,y:18,duration:.8,stagger:.1,scrollTrigger:{trigger:'.members-header',start:'top 82%',once:true}});
-  gsap.to('.progress i',{scaleX:1,ease:'none',scrollTrigger:{trigger:document.body,start:'top top',end:'bottom bottom',scrub:.2}});
+  gsap.to('.progress i',{scaleX:1,ease:'none',scrollTrigger:{trigger:document.body,start:'top top',end:'bottom bottom',scrub:true}});
   gsap.to('#intro',{autoAlpha:0,ease:'none',scrollTrigger:{trigger:'#story',start:'top bottom',end:'top top',scrub:true}});
   gsap.fromTo('#story',{autoAlpha:0},{autoAlpha:1,ease:'none',scrollTrigger:{trigger:'#story',start:'top bottom',end:'top 30%',scrub:true}});
   gsap.to('#story',{autoAlpha:0,ease:'none',scrollTrigger:{trigger:'#topics',start:'top bottom',end:'top top',scrub:true}});
   gsap.fromTo('#topics',{autoAlpha:0},{autoAlpha:1,ease:'none',scrollTrigger:{trigger:'#topics',start:'top bottom',end:'top 35%',scrub:true}});
   gsap.fromTo('#details',{autoAlpha:0},{autoAlpha:1,ease:'none',scrollTrigger:{trigger:'#details',start:'top bottom',end:'top 35%',scrub:true}});
-  gsap.timeline({scrollTrigger:{trigger:'.details-intro-track',start:'top top',end:'bottom bottom',scrub:.75}})
+  gsap.timeline({scrollTrigger:{trigger:'.details-intro-track',start:'top top',end:'bottom bottom',scrub:true}})
     .fromTo('.details-intro .eyebrow',{autoAlpha:0,y:16},{autoAlpha:1,y:0,duration:.22,ease:'none'},0)
     .fromTo('.details-heading-line',{autoAlpha:0,y:24,clipPath:'inset(0 100% 0 0)',filter:'blur(8px)'},{autoAlpha:1,y:0,clipPath:'inset(0 0 0 0)',filter:'blur(0px)',duration:.28,stagger:.16,ease:'none'},.12)
     .fromTo('.details-support',{autoAlpha:0,y:16},{autoAlpha:1,y:0,duration:.24,ease:'none'},.82)
     .to('.details-intro',{autoAlpha:0,y:-22,duration:.22,ease:'none'},1.35);
   const topicSequence=document.querySelector('.topic-detail-sequence');
-  const topicSwap=gsap.timeline({scrollTrigger:{trigger:topicSequence,start:'top top',end:'bottom bottom',scrub:.65}});
+  const topicSwap=gsap.timeline({scrollTrigger:{trigger:topicSequence,start:'top top',end:'bottom bottom',scrub:true}});
   topicDetailStages.forEach((stage,index)=>{
     const start=index;
     if(index>0) topicSwap.to(topicDetailStages[index-1],{autoAlpha:0,scale:1.025,y:-22,duration:.14,ease:'none'},start-.24);
@@ -146,19 +146,19 @@ if(window.gsap&&window.ScrollTrigger){
   topicSwap.to(topicDetailStages.at(-1),{autoAlpha:0,scale:1.025,y:-22,duration:.14,ease:'none'},5.74);
   gsap.to('#details',{autoAlpha:0,ease:'none',scrollTrigger:{trigger:'#papers',start:'top bottom',end:'top top',scrub:true}});
   gsap.fromTo('#papers',{autoAlpha:0},{autoAlpha:1,ease:'none',scrollTrigger:{trigger:'#papers',start:'top bottom',end:'top 35%',scrub:true}});
-  gsap.timeline({scrollTrigger:{trigger:'.papers-title-track',start:'top top',end:'bottom bottom',scrub:.8}})
+  gsap.timeline({scrollTrigger:{trigger:'.papers-title-track',start:'top top',end:'bottom bottom',scrub:true}})
     .fromTo('.papers-title',{autoAlpha:0,y:34,scale:.94,filter:'blur(12px)'},{autoAlpha:1,y:0,scale:1,filter:'blur(0px)',duration:.9,ease:'none'},.05)
     .to('.papers-title',{autoAlpha:0,y:-28,scale:1.03,filter:'blur(8px)',duration:.8,ease:'none'},1.6);
   const papersSequence=document.querySelector('.papers-sequence');
-  const papersSwap=gsap.timeline({scrollTrigger:{trigger:papersSequence,start:'top top',end:'bottom bottom',scrub:1.1}});
+  const papersSwap=gsap.timeline({scrollTrigger:{trigger:papersSequence,start:'top top',end:'bottom bottom',scrub:true}});
   papersSwap.fromTo(paperStages[0],{autoAlpha:0,scale:.975,y:24},{autoAlpha:1,scale:1,y:0,duration:.42,ease:'none'},0)
     .to(paperStages[0],{autoAlpha:0,scale:1.02,y:-20,duration:.6,ease:'none'},1.18)
     .fromTo(paperStages[1],{autoAlpha:0,scale:.975,y:24},{autoAlpha:1,scale:1,y:0,duration:.5,ease:'none'},1.65)
     .to(paperStages[1],{autoAlpha:0,scale:1.02,y:-20,duration:.65,ease:'none'},3.35);
   gsap.to('#papers',{autoAlpha:0,ease:'none',scrollTrigger:{trigger:'#members',start:'top bottom',end:'top top',scrub:true}});
-  gsap.fromTo('#members',{autoAlpha:.12},{autoAlpha:1,ease:'none',scrollTrigger:{trigger:'#members',start:'top 45%',end:'top -30%',scrub:1}});
-  gsap.to('.members-header, #memberGroups',{autoAlpha:0,y:-20,ease:'none',scrollTrigger:{trigger:'#story-outro',start:'top bottom',end:'top top',scrub:.7}});
-  gsap.timeline({scrollTrigger:{trigger:'#love',start:'top bottom',end:'top top',scrub:.75}})
+  gsap.fromTo('#members',{autoAlpha:.12},{autoAlpha:1,ease:'none',scrollTrigger:{trigger:'#members',start:'top 45%',end:'top -30%',scrub:true}});
+  gsap.to('.members-header, #memberGroups',{autoAlpha:0,y:-20,ease:'none',scrollTrigger:{trigger:'#story-outro',start:'top bottom',end:'top top',scrub:true}});
+  gsap.timeline({scrollTrigger:{trigger:'#love',start:'top bottom',end:'top top',scrub:true}})
     .fromTo('#love',{autoAlpha:0,yPercent:9},{autoAlpha:1,yPercent:0,ease:'none',duration:.45},0)
     .fromTo('.timelapse',{opacity:0,scale:1.06,filter:'blur(18px)'},{opacity:.72,scale:1,filter:'blur(0px)',ease:'none',duration:.65},.08)
     .to('#journeyBackground',{autoAlpha:0,ease:'none',duration:.35},.65);

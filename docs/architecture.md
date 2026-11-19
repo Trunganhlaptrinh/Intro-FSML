@@ -48,7 +48,7 @@ flowchart TD
 
 | Concern | Owner | Notes |
 | --- | --- | --- |
-| Main page reveal, section transitions, language toggle, and video playback | `website/src/app.js` | GSAP and ScrollTrigger load from local vendor files. Scrubbed transitions reverse when scrolling upward. Wheel input is reduced on mouse-only devices; touch scrolling remains native. Press `9` for a slow guided scroll to the page end; press it again or start manual scrolling to cancel. |
+| Main page reveal, section transitions, language toggle, and video playback | `website/src/app.js` | GSAP and ScrollTrigger load from local vendor files. Scroll-linked timelines track scroll directly so upward reversals respond immediately. Desktop wheel input is reduced; touch scrolling remains native. Press `9` for a slow guided scroll to the page end; press it again or start manual scrolling to cancel. |
 | Scientific Papers title and article-stage transitions | `website/index.html`, `website/src/app.js`, `website/src/style.css` | The heading is its own scroll reveal. Four linked papers fade into view, then transition to five more. The paper titles and author names stay in English when the site language changes. |
 | Dot hands | `website/public/scenes/intro-smart-lab.html` | Embedded in the intro. |
 | Persistent Story | `website/public/scenes/smart-lab-story.html` | A single iframe sits behind the main sequence. Keep its background dark and unobtrusive. |
