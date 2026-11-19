@@ -12,18 +12,20 @@
 
 All six topic card images were supplied for this project and are stored in `website/public/assets/topics/`:
 
-| Topic | Image |
-| --- | --- |
-| Software Engineering | `software-engineering.png` |
-| Internet of Things | `internet-of-things.png` |
-| Artificial Intelligence | `artificial-intelligence.jpg` |
-| Robotics | `robotics.png` |
-| Blockchain | `blockchain.png` |
-| Cybersecurity | `cybersecurity.png` |
+| Topic | Optimized image used by the site | Supplied source image (retained) |
+| --- | --- | --- |
+| Software Engineering | `software-engineering.webp` | `software-engineering.png` |
+| Internet of Things | `internet-of-things.webp` | `internet-of-things.png` |
+| Artificial Intelligence | `artificial-intelligence.webp` | `artificial-intelligence.jpg` |
+| Robotics | `robotics.webp` | `robotics.png` |
+| Blockchain | `blockchain.webp` | `blockchain.png` |
+| Cybersecurity | `cybersecurity.webp` | `cybersecurity.png` |
 
-## Topic pages and tool marks
+The Three.js topic scene loads the WebP derivatives. The original images are kept alongside them as the supplied source files.
 
-| Topic | HTML page | Tool marks |
+## Topic pages and roadmaps
+
+| Topic | HTML page | Content |
 | --- | --- | --- |
 | Software Engineering | `website/public/topic-details/software-engineering.html` | Learning roadmap and project outcome |
 | Internet of Things | `website/public/topic-details/internet-of-things.html` | Learning roadmap and project outcome |

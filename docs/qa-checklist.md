@@ -27,12 +27,12 @@ With the server running, confirm that `/website/`, all three scene documents, si
 - Confirm the Story particle scene remains visible over a dark base from the intro through Former members, then yields to the time-lapse.
 - Check the Story-only pause after Former members and the coordinated appearance of the video and closing title.
 - Confirm the video resolves from its initial hidden/blurred state to its final appearance and pauses after leaving view.
-- Review topic copy on the left and white-backed tool marks on the right. Verify each tool label against its image.
+- Confirm each topic page presents its outcome and four-step roadmap clearly, without obsolete tool-logo panels.
 
 ## Mobile and tablet review
 
 - Check at a narrow phone width and a tablet width.
-- Confirm topic copy and tool marks fit without clipping or horizontal scrolling.
+- Confirm each topic outcome and roadmap fit without clipping or horizontal scrolling.
 - Confirm the topic roadmap and outcomes fit without clipping, and the five-paper stage remains readable on a phone.
 - Confirm member portraits, names, and roles remain readable in the responsive member grid.
 - Check that the continuous background stays subtle and does not reduce text contrast.

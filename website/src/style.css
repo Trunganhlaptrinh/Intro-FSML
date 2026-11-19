@@ -30,9 +30,7 @@
 @media(max-width:800px){.intro-brand{top:19vh;font-size:clamp(28px,7vw,44px)}.member-role{font-size:11px;letter-spacing:0}.love-scene h2{font-size:clamp(60px,16vw,128px)}}
 
 
-/* Adapted black and white editorial spotlight layout from the supplied detail reference. */
-.details-scene{min-height:0;padding:13vh 8vw 12vh;background:#050608}
-.details-intro{max-width:900px;margin:0 auto 6vh;padding:0}
+/* Hide the obsolete detail counter; the active panel is managed by the pinned sequence. */
 .details-intro .frame-index{display:none}
 
 
@@ -49,7 +47,6 @@
 .mantra-char{will-change:transform,opacity,filter}
 .story-copy>p:not(.eyebrow){max-width:720px;margin:0 auto;font:clamp(15px,1.4vw,19px)/1.85 var(--serif);color:rgba(255,255,255,.9)}
 .story-caption{justify-content:center;margin-top:34px}
-.details-scene{min-height:0;padding:13vh 8vw 12vh;background:#050608}
 .members-scene{padding-bottom:26svh}
 .love-scene{z-index:2;min-height:118svh;margin-top:-18svh;padding-top:18svh;overflow:hidden;background:#020305}
 .love-scene:before{content:"";position:absolute;inset:0 0 auto;height:38svh;z-index:1;pointer-events:none;background:linear-gradient(180deg,#06090c 0%,rgba(6,9,12,.74) 38%,transparent 100%)}
@@ -146,7 +143,6 @@ main,.site-footer{position:relative;z-index:1}
   .intro-brand-line{width:42vw;margin-top:12px}
   .details-intro-track{height:300svh}
   .details-intro{height:100svh;min-height:100svh;padding:13vh 7vw 6vh}
-  .details-intro h2{font-size:clamp(40px,8vw,62px)}
   .details-intro h2{font-size:clamp(16px,4.8vw,38px)}
   .details-scene{padding-bottom:14svh}
   .topic-detail-sequence{height:1300svh}

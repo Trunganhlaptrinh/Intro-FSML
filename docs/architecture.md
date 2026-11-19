@@ -38,7 +38,7 @@ flowchart TD
 1. `#intro` embeds the dot-hand scene and opening title.
 2. `#story` presents the MAKE LIFE BETTER slogan over the shared Story animation. Characters assemble during the scroll, then hold before the scene transitions to the topic ribbon.
 3. `#topics` hosts the Three.js topic ribbon. The parent scroll track and iframe track are synchronized by forwarding ScrollTrigger progress into the iframe. The opening title and center caption reveal later in the scene. The iframe scrollbar is hidden to avoid a second scroll control.
-4. `#details` first presents its section heading in a pinned scroll track, with a line-by-line reveal. It then presents six standalone topic pages in a pinned sequence. The parent timeline centers the active page, fades it out, and reveals the next page; scrolling upward reverses the transitions.
+4. `#details` first presents its centered, single-line heading in a pinned scroll track, revealed from left to right. It then presents six standalone topic pages in a pinned sequence. The parent timeline centers the active page, fades it out, and reveals the next page; scrolling upward reverses the transitions.
 5. `#papers` presents the English-only Scientific Papers heading, then two pinned article stages: four papers followed by five others. Titles link to their source pages. Both transitions reverse when scrolling upward.
 6. `#members` renders Executive Board, Present, and Former cards from data in `website/src/app.js`, over the continuing Story background.
 7. `#story-outro` provides a short Story-only transition after the last member while the member content fades away.

@@ -144,12 +144,12 @@ void main(){
 }`;
 const FIELD_COLORS = ['#86E3A3', '#68B9FF', '#BE91FF', '#FFD166', '#FF9B63', '#FF7777'];
 const FIELD_IMAGES = [
-  '/website/public/assets/topics/software-engineering.png',
-  '/website/public/assets/topics/internet-of-things.png',
-  '/website/public/assets/topics/artificial-intelligence.jpg',
-  '/website/public/assets/topics/robotics.png',
-  '/website/public/assets/topics/blockchain.png',
-  '/website/public/assets/topics/cybersecurity.png',
+  '/website/public/assets/topics/software-engineering.webp',
+  '/website/public/assets/topics/internet-of-things.webp',
+  '/website/public/assets/topics/artificial-intelligence.webp',
+  '/website/public/assets/topics/robotics.webp',
+  '/website/public/assets/topics/blockchain.webp',
+  '/website/public/assets/topics/cybersecurity.webp',
 ].map(src => { const image = new Image(); image.src = src; return image; });
 function drawTopicPoster(index, title, photo = FIELD_IMAGES[index]) {
   const poster = document.createElement('canvas'); poster.width = 1200; poster.height = 760;
