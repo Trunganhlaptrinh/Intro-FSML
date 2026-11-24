@@ -2,6 +2,8 @@
 
 The repository is a static site with no build step. Deploy from the repository root so existing `/website/...` asset paths remain valid. The root URL redirects to `/website/` through `vercel.json`.
 
+`vercel.json` sets the browser security headers. `.vercelignore` excludes contributor documents and Docker files from deployments. The Content Security Policy allows the current inline scene scripts and the specific external font and animation hosts; update it when changing those dependencies.
+
 ## One-time project setup
 
 1. In Vercel, import the GitHub repository `Trunganhlaptrinh/Intro-FSML` and authorize access to it.

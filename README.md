@@ -9,10 +9,10 @@ Requirements: Python 3.
 From the repository root, run:
 
 ```powershell
-python -m http.server 8000 --bind 127.0.0.1
+python scripts/dev_server.py
 ```
 
-Open <http://127.0.0.1:8000/website/>. Stop the server with `Ctrl+C`.
+Open <http://127.0.0.1:8000/website/>. Stop the server with `Ctrl+C`. This local server binds only to loopback and blocks hidden paths such as `.env.local` and `.git/`.
 
 ## Run with Docker
 

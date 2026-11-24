@@ -45,4 +45,6 @@ The site has no persistent container data. Rebuild the image after changing a we
 - `docker/nginx.conf` serves the site and exposes the container health endpoint at `/health`.
 - `.dockerignore` keeps source documents out of the build context while retaining all of `website/`, including the MP4.
 
+Nginx adds a restrictive Content Security Policy and standard browser security headers, and denies requests for hidden paths. The policy permits the external font and animation libraries currently used by the site; review it whenever a new external host or browser feature is added.
+
 The time-lapse MP4 is about 53 MB, which increases the image size. Nginx serves it as a static MP4 and supports byte-range requests for browser seeking.

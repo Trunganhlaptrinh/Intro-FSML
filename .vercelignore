@@ -1,0 +1,15 @@
+AGENTS.md
+TODO.md
+README.md
+*.md
+*.docx
+*.pptx
+*.pdf
+RE/
+docs/
+docker/
+Dockerfile
+docker-compose.yml
+compose.yaml
+.env*
+.vercelignore

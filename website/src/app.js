@@ -65,35 +65,50 @@ let language = 'en';
 
 topics.forEach((topic,i)=>{
   const row=document.createElement('article'); row.className='topic-row reveal';
-  row.innerHTML=`<div><h3 data-en="${topic.en}" data-vi="${topic.vi}">${topic.en}</h3><p data-en="${topic.short}" data-vi="${topic.shortVi}">${topic.short}</p></div><a class="topic-arrow" href="#detail-topic-${i+1}" aria-label="Read about ${topic.en}">↗</a>`;
+  const copy=document.createElement('div');
+  const title=document.createElement('h3');
+  title.dataset.en=topic.en; title.dataset.vi=topic.vi; title.textContent=topic.en;
+  const summary=document.createElement('p');
+  summary.dataset.en=topic.short; summary.dataset.vi=topic.shortVi; summary.textContent=topic.short;
+  copy.append(title,summary);
+  const link=document.createElement('a');
+  link.className='topic-arrow'; link.href=`#detail-topic-${i+1}`;
+  link.setAttribute('aria-label',`Read about ${topic.en}`); link.textContent='↗';
+  row.append(copy,link);
   topicList.append(row);
 });
 
 groups.forEach((group,gi)=>{
   const section=document.createElement('section'); section.className='member-group';
   const viTitle={'Executive Board':'Ban Điều hành','Present':'Thành viên hiện tại','Former':'Cựu thành viên'}[group.title];
-  section.innerHTML=`<h3 class="group-title" data-en="${group.title}" data-vi="${viTitle}">${group.title}</h3><div class="member-grid"></div>`;
-  const grid=section.querySelector('.member-grid');
+  const heading=document.createElement('h3'); heading.className='group-title';
+  heading.dataset.en=group.title; heading.dataset.vi=viTitle; heading.textContent=group.title;
+  const grid=document.createElement('div'); grid.className='member-grid';
+  section.append(heading,grid);
   group.people.forEach(([name,role,image],i)=>{
     const card=document.createElement('article'); card.className='member-card reveal';
-    card.innerHTML=`<img class="member-photo" src="/website/public/assets/members/${image}" alt="Portrait of ${name}" loading="lazy"><h4 class="member-name">${name}</h4><p class="member-role"></p>`;
-    card.querySelector('.member-role').textContent=role;
-    if(image==='member-placeholder.png') card.querySelector('.member-photo').classList.add('placeholder-photo');
+    const photo=document.createElement('img'); photo.className='member-photo';
+    photo.src=`/website/public/assets/members/${image}`; photo.alt=`Portrait of ${name}`; photo.loading='lazy';
+    const memberName=document.createElement('h4'); memberName.className='member-name'; memberName.textContent=name;
+    const memberRole=document.createElement('p'); memberRole.className='member-role'; memberRole.textContent=role;
+    if(image==='member-placeholder.png') photo.classList.add('placeholder-photo');
+    card.append(photo,memberName,memberRole);
     grid.append(card);
   });
-  memberGroups.append(section);
+  memberGroups.append(section);   
 });
 
 function setLanguage(next){
   language=next; document.documentElement.lang=next;
-  document.querySelectorAll('[data-en][data-vi]').forEach(el=>el.innerHTML=el.dataset[next]);
+  document.querySelectorAll('[data-en][data-vi]').forEach(el=>el.textContent=el.dataset[next]);
   document.querySelector('#langToggle').textContent=next.toUpperCase();
-  document.querySelector('#topicRibbon')?.contentWindow?.postMessage({type:'smart-lab-language',language:next},'*');
-  topicDetailFrames.forEach(frame=>frame.contentWindow?.postMessage({type:'smart-lab-language',language:next},'*'));
+  const message={type:'smart-lab-language',language:next};
+  document.querySelector('#topicRibbon')?.contentWindow?.postMessage(message,window.location.origin);
+  topicDetailFrames.forEach(frame=>frame.contentWindow?.postMessage(message,window.location.origin));
 }
 document.querySelector('#langToggle').addEventListener('click',()=>setLanguage(language==='en'?'vi':'en'));
 document.querySelector('#year').textContent=new Date().getFullYear();
-topicDetailFrames.forEach(frame=>frame.addEventListener('load',()=>frame.contentWindow?.postMessage({type:'smart-lab-language',language},'*')));
+topicDetailFrames.forEach(frame=>frame.addEventListener('load',()=>frame.contentWindow?.postMessage({type:'smart-lab-language',language},window.location.origin)));
 
 if(window.gsap&&window.ScrollTrigger){
   gsap.registerPlugin(ScrollTrigger);
@@ -112,7 +127,7 @@ if(window.gsap&&window.ScrollTrigger){
   ScrollTrigger.create({trigger:'#topics',start:'top top',end:'bottom bottom',onUpdate:self=>syncTopicScene(self.progress),onRefresh:self=>syncTopicScene(self.progress)});
   topicFrame?.addEventListener('load',()=>{
     ScrollTrigger.refresh();
-    topicFrame.contentWindow?.postMessage({type:'smart-lab-language',language},'*');
+    topicFrame.contentWindow?.postMessage({type:'smart-lab-language',language},window.location.origin);
   });
   gsap.utils.toArray('.reveal').forEach((el)=>gsap.fromTo(el,{autoAlpha:0,y:34},{autoAlpha:1,y:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%',once:true}}));
   gsap.from('.intro-brand-label',{y:12,duration:.75,ease:'power3.out'});

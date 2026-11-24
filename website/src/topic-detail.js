@@ -8,5 +8,8 @@ function applyTopicLanguage(language) {
 
 applyTopicLanguage('en');
 window.addEventListener('message', (event) => {
-  if (event.data?.type === 'smart-lab-language') applyTopicLanguage(event.data.language);
+  if (event.source !== window.parent || event.origin !== window.location.origin) return;
+  if (event.data?.type !== 'smart-lab-language') return;
+  if (event.data.language !== 'en' && event.data.language !== 'vi') return;
+  applyTopicLanguage(event.data.language);
 });

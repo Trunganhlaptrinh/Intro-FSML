@@ -201,7 +201,10 @@ function setSceneLanguage(lang) {
 }
 
 addEventListener('message', event => {
-  if (event.source === parent && event.data?.type === 'smart-lab-language') setSceneLanguage(event.data.language);
+  if (event.source !== parent || event.origin !== location.origin) return;
+  if (event.data?.type !== 'smart-lab-language') return;
+  if (event.data.language !== 'en' && event.data.language !== 'vi') return;
+  setSceneLanguage(event.data.language);
 });
 const GZ = 8;
 let W = 1, H = 1, asp = 1, cols = 3, rows = 2, tanH = .3153;

@@ -9,10 +9,12 @@ Run from the repository root:
 ```powershell
 node --check website/src/app.js
 node --check website/src/topic-detail.js
-python -m http.server 8000 --bind 127.0.0.1
+python scripts/dev_server.py
 ```
 
-With the server running, confirm that `/website/`, all three scene documents, six topic pages, the logo, member portraits, tool images, and video assets load successfully.
+With the server running, confirm that `/website/`, all three scene documents, six topic pages, the logo, member portraits, tool images, and video assets load successfully. Confirm `/.env.local`, `/.git/config`, and encoded variants return 404.
+
+After a Vercel deployment, inspect response headers on `/website/` and a scene page for the configured CSP, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, and frame restrictions. Confirm root-level contributor documents return 404 and check the browser console for CSP violations while viewing the full page.
 
 ## Desktop review
 

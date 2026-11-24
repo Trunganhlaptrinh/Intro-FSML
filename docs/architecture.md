@@ -65,9 +65,9 @@ The language button defaults to English and sends `{ type: "smart-lab-language",
 From the repository root, run:
 
 ```powershell
-python -m http.server 8000 --bind 127.0.0.1
+python scripts/dev_server.py
 ```
 
-Then open <http://127.0.0.1:8000/website/>. Some fonts and libraries are loaded from external hosts, so those resources require a network connection.
+Then open <http://127.0.0.1:8000/website/>. The development server binds only to loopback and rejects hidden paths. Some fonts and libraries are loaded from external hosts, so those resources require a network connection.
 
 The time-lapse MP4 is managed by Git LFS. Contributors need Git LFS installed and initialized (`git lfs install`) to fetch and update the video.
